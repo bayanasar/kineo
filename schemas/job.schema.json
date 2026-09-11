@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kineto.local/schemas/job.schema.json",
+  "title": "Kineto Job / Write-ahead Intent",
+  "type": "object",
+  "required": ["job_id", "kind", "status", "idempotency_key", "input_hash"],
+  "properties": {
+    "job_id": {"type": "string", "minLength": 1},
+    "kind": {"type": "string", "minLength": 1},
+    "status": {"enum": ["queued", "running", "waiting_for_user", "succeeded", "failed", "canceled"]},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "input_hash": {"type": "string", "minLength": 1},
+    "artifact_id": {"type": ["string", "null"]},
+    "provider_job_id": {"type": ["string", "null"]},
+    "progress": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "estimated_cost": {
+      "type": ["object", "null"],
+      "properties": {
+        "call_count": {"type": "integer", "minimum": 0},
+        "amount_micros": {"type": "integer", "minimum": 0},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "estimated_duration_ms": {"type": ["integer", "null"], "minimum": 0}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

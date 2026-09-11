@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kineto.local/schemas/artifact.schema.json",
+  "title": "Kineto Artifact Record",
+  "type": "object",
+  "required": ["artifact_id", "schema_version", "type", "status", "content_hash", "dependencies"],
+  "properties": {
+    "artifact_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9_.-]+$"},
+    "schema_version": {"type": "integer", "minimum": 1},
+    "type": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "candidate", "selected", "locked", "superseded"]},
+    "content_hash": {"type": "string", "minLength": 1},
+    "input_hash": {"type": ["string", "null"], "minLength": 1},
+    "provider": {"type": ["string", "null"]},
+    "model": {"type": ["string", "null"]},
+    "compiler_version": {"type": ["string", "null"]},
+    "compiled_prompt": {"type": ["string", "null"]},
+    "degradation": {"enum": ["none", "cosmetic", "identity_affecting", null]},
+    "dropped_constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["constraint", "reason", "degradation"],
+        "properties": {
+          "constraint": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1},
+          "degradation": {"enum": ["cosmetic", "identity_affecting"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact_id", "content_hash", "impact"],
+        "properties": {
+          "artifact_id": {"type": "string", "minLength": 1},
+          "content_hash": {"type": "string", "minLength": 1},
+          "impact": {"enum": ["semantic", "cosmetic"]},
+          "field": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

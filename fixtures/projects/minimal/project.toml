@@ -1,0 +1,15 @@
+format_version = 1
+project_id = "golden_minimal"
+title = "Golden Minimal"
+created_at = "2026-09-08T00:00:00Z"
+
+[source]
+kind = "text"
+path = "source/story.txt"
+
+[defaults]
+language = "en"
+
+[workflow]
+recipe_id = "default-film"
+recipe_version = 1

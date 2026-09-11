@@ -1,0 +1,12 @@
+{
+  "shot_id": "shot_001",
+  "schema_version": 1,
+  "duration_target": 4.0,
+  "characters": ["alice"],
+  "framing": "medium_close_up",
+  "lens": "50mm",
+  "camera_motion": "slow_dolly_in",
+  "action": "Alice picks up the sealed letter",
+  "dialogue": "",
+  "emotion": "cautious curiosity"
+}

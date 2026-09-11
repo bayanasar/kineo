@@ -1,0 +1,13 @@
+[package]
+name = "kineto-native"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+name = "kineto_native"
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+kineto-core = { path = "../../../crates/kineto-core" }
+kineto-project = { path = "../../../crates/kineto-project" }

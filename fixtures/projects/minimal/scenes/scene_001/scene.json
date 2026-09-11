@@ -1,0 +1,9 @@
+{
+  "scene_id": "scene_001",
+  "schema_version": 1,
+  "location": "empty_room",
+  "time": "day",
+  "characters": ["alice"],
+  "dramatic_goal": "Alice discovers the letter",
+  "shots": ["shot_001"]
+}

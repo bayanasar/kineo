@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kineto.local/schemas/project.schema.json",
+  "title": "Kineto project.toml decoded model",
+  "type": "object",
+  "required": ["format_version", "project_id", "title", "created_at", "source", "defaults", "workflow"],
+  "properties": {
+    "format_version": {"type": "integer", "const": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "source": {
+      "type": "object",
+      "required": ["kind", "path"],
+      "properties": {
+        "kind": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": true
+    },
+    "defaults": {
+      "type": "object",
+      "required": ["language"],
+      "properties": {"language": {"type": "string", "minLength": 1}},
+      "additionalProperties": true
+    },
+    "workflow": {
+      "type": "object",
+      "required": ["recipe_id", "recipe_version"],
+      "properties": {
+        "recipe_id": {"type": "string", "minLength": 1},
+        "recipe_version": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

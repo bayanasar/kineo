@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kineto.local/schemas/selection.schema.json",
+  "title": "Kineto Selection Manifest",
+  "type": "object",
+  "required": ["selected_artifact_id", "candidate_artifact_ids"],
+  "properties": {
+    "selected_artifact_id": {"type": ["string", "null"]},
+    "candidate_artifact_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "additionalProperties": true
+}
